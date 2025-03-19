@@ -46,10 +46,6 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
             collection.insert_one(
                 {"response": response, "linkedin_url": linkedin_profile_url}
             )
-
-        # save response to file
-        with open("linkedin_profile.json", "w") as f:
-            json.dump(response, f)
     return response
 
 

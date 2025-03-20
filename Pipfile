@@ -12,6 +12,7 @@ black = "*"
 langchain-ollama = "*"
 linkedin-scraper = "*"
 pymongo = "*"
+flask = "*"
 
 [dev-packages]
 black = "*"

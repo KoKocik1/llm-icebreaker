@@ -4,8 +4,8 @@ from pydantic import BaseModel, Field
 
 
 class Summary(BaseModel):
-    summary: str = Field(description="The summary of the conversation")
-    facts: List[str] = Field(description="The facts of the conversation")
+    summary: str = Field(description="summary")
+    facts: List[str] = Field(description="interesting facts about them")
 
     def to_dict(self) -> Dict[str, Any]:
         return {"summary": self.summary, "facts": self.facts}

@@ -32,7 +32,8 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
             {"linkedin_url": linkedin_profile_url})
         if cached_data:
             print(f"Using cached data for {linkedin_profile_url}")
-            return cached_data.get("response")
+            response = cached_data.get("response")
+
         else:
             driver = webdriver.Chrome()
 
@@ -43,9 +44,16 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
             response = Person(linkedin_profile_url,
                               driver=driver).person_to_json()
 
+            response = {
+                k: v
+                for k, v in response.items()
+                if v not in ([], "", "", None) and k not in ["certifications"]
+            }
+
             collection.insert_one(
                 {"response": response, "linkedin_url": linkedin_profile_url}
             )
+
     return response
 
 

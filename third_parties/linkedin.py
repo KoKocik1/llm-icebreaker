@@ -28,8 +28,7 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
         client = get_mongo_client()
         db = client[DB_NAME]
         collection = db[COLLECTION_PROFILES]
-        cached_data = collection.find_one(
-            {"linkedin_url": linkedin_profile_url})
+        cached_data = collection.find_one({"linkedin_url": linkedin_profile_url})
         if cached_data:
             print(f"Using cached data for {linkedin_profile_url}")
             response = cached_data.get("response")
@@ -41,8 +40,7 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
             password = os.getenv("LINKEDIN_PASSWORD")
 
             actions.login(driver, email, password)
-            response = Person(linkedin_profile_url,
-                              driver=driver).person_to_json()
+            response = Person(linkedin_profile_url, driver=driver).person_to_json()
 
             response = {
                 k: v
@@ -58,5 +56,4 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
 
 
 if __name__ == "__main__":
-    print(scrape_linkedin_profile(
-        "https://www.linkedin.com/in/krzysztof-kokot-dev/"))
+    print(scrape_linkedin_profile("https://www.linkedin.com/in/krzysztof-kokot-dev/"))

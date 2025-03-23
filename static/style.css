@@ -39,8 +39,10 @@ body {
 #result {
   display: none;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+}
+#picture-container {
+  align-items: center;
 }
 
 #profile-pic {

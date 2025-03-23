@@ -32,7 +32,7 @@
       <span class="three-quarters-loader"></span>
     </div>
     <main id="result">
-      <div>
+      <div id="picture-container">
         <img
           id="profile-pic"
           src=""
@@ -74,6 +74,7 @@
               : Promise.reject('POST request failed')
           )
           .then((data) => {
+            console.log(data);
             document.getElementById('profile-pic').src = data.picture_url;
             document.getElementById('summary').textContent =
               data.summary_and_facts.summary;
@@ -81,20 +82,21 @@
               document.getElementById('facts'),
               data.summary_and_facts.facts
             );
-            // createHtmlList(
-            //   document.getElementById('ice-breakers'),
-            //   data.ice_breakers.ice_breakers
-            // );
-            // createHtmlList(
-            //   document.getElementById('topics-of-interest'),
-            //   data.interests.topics_of_interest
-            // );
+            createHtmlList(
+              document.getElementById('ice-breakers'),
+              data.ice_breakers.ice_breakers
+            );
+            createHtmlList(
+              document.getElementById('topics-of-interest'),
+              data.interests.topics
+            );
             spinner.style.display = 'none';
             result.style.display = 'flex';
           });
       });
 
       function createHtmlList(element, items) {
+        console.log(items);
         const ul = document.createElement('ul');
         items.forEach((item) => {
           const li = document.createElement('li');

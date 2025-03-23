@@ -13,6 +13,7 @@ langchain-ollama = "*"
 linkedin-scraper = "*"
 pymongo = "*"
 flask = "*"
+langsmith = "*"
 
 [dev-packages]
 black = "*"

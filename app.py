@@ -15,11 +15,14 @@ def index():
 @app.route("/ice_breaker", methods=["POST"])
 def ice_breaker_route():
     prompt = request.form["name"]
-    summary_and_facts, picture_url = ice_breaker(name=prompt)
+    summary_and_facts, interests, ice_breakers, profile_pic_url = ice_breaker(
+        name=prompt)
     return jsonify(
         {
             "summary_and_facts": summary_and_facts.to_dict(),
-            "picture_url": picture_url,
+            "interests": interests.to_dict(),
+            "ice_breakers": ice_breakers.to_dict(),
+            "picture_url": profile_pic_url,
         }
     )
 
